@@ -68,6 +68,16 @@ app.post("/userLogin", async (req, res) => {
   }
 });
 
+app.post("/userLogout", (req, res) => {
+  // Destroy the session
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send({ message: "Failed to log out" });
+    }
+    res.status(200).send({ message: "Logged out successfully" });
+  });
+});
+
 app.post("/userRegister", async (req, res) => {
   const { email, phone, password, confirmpassword } = req.body;
 
