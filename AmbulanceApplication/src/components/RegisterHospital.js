@@ -13,7 +13,6 @@ import {
 import * as ImagePicker from "expo-image-picker";
 
 const RegisterHospital = () => {
-  // Define state for each input field
   const [hospitalName, setHospitalName] = useState("");
   const [registrationNumber, setRegistrationNumber] = useState("");
   const [address, setAddress] = useState("");
@@ -45,7 +44,7 @@ const RegisterHospital = () => {
 
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
     if (!pickerResult.canceled) {
-      setImages((prevImages) => [...prevImages, pickerResult.uri]); // Add new image to the array
+      setImages((prevImages) => [...prevImages, pickerResult.uri]);
     }
   };
 
@@ -77,8 +76,8 @@ const RegisterHospital = () => {
       operatingHours,
       coordinates,
       emergencyContact,
-      hospitalImages, // Array of hospital images
-      certificateImages, // Array of certificate images
+      hospitalImages,
+      certificateImages,
     };
 
     console.log("Hospital Data:", hospitalData);

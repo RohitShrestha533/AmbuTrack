@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import { WebView } from "react-native-webview";
 
-const Test = () => {
+const Map = () => {
   const [hospitalName, setHospitalName] = useState("");
-  const [coordinates, setCoordinates] = useState("27, 84");
+  const [coordinates, setCoordinates] = useState("27.1, 84");
   const [showMap, setShowMap] = useState(false);
 
   const handleMapMessage = (event) => {
@@ -59,10 +59,6 @@ const Test = () => {
     </html>
   `;
 
-  const handleLatitudeLongitudeClick = () => {
-    setShowMap(true);
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Register Hospital</Text>
@@ -74,13 +70,16 @@ const Test = () => {
         onChangeText={setHospitalName}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Latitude, Longitude"
-        value={coordinates}
-        editable={false}
-        onPress={handleLatitudeLongitudeClick}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          console.log("Setting showMap to true");
+          setShowMap(true);
+        }}
+      >
+        <View style={styles.input}>
+          <Text>{coordinates}</Text>
+        </View>
+      </TouchableOpacity>
 
       {showMap && (
         <WebView
@@ -88,6 +87,7 @@ const Test = () => {
           source={{ html: mapHtml }}
           javaScriptEnabled={true}
           onMessage={handleMapMessage}
+          style={{ flex: 1, height: "100%", width: "100%" }}
         />
       )}
 
@@ -133,4 +133,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Test;
+export default Map;

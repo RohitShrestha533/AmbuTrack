@@ -7,7 +7,6 @@ const Policies = () => {
       <Text style={styles.title}>Policies Information</Text>
       <Text style={styles.info}>Name: Rohit Shrestha</Text>
       <Text style={styles.info}>Email: rohit@example.com</Text>
-
       <Text style={styles.info}>Phone: +123456789</Text>
     </View>
   );

@@ -6,41 +6,25 @@ import {
   SectionList,
   TouchableOpacity,
 } from "react-native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Define the DetailsScreen component
-const DetailsScreen = ({ route, navigation }) => {
-  useEffect(() => {
-    navigation.setOptions({ title: route.params.name });
-  }, [navigation, route.params.name]);
-
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Details for {route.params.name}</Text>
-    </View>
-  );
-};
-
-// Simulated logged-in user's name
 const loggedInUserName = "Rohit Shrestha";
 
-// Data for SectionList
 const SectionlistToDisplay = [
   {
     title: "Profile",
     data: [
       { name: "Account" },
       { name: "History" },
-      { name: "Rewards" },
       { name: "Policies" },
-      { name: "Languages" },
       { name: "Log Out" },
     ],
   },
 ];
 
-// Update the Item component to navigate based on item name
 const Item = ({ name, navigation }) => {
-  const handlePress = () => {
+  const handlePress = async () => {
     switch (name) {
       case "Account":
         navigation.navigate("Account");
@@ -53,10 +37,16 @@ const Item = ({ name, navigation }) => {
         break;
       case "Log Out":
         alert("You have been logged out!");
-        navigation.reset({
-          index: 0,
-          routes: [{ name: "Login" }],
-        });
+
+        try {
+          await axios.post("http://192.168.100.9:3000/userLogout");
+
+          await AsyncStorage.removeItem("userToken");
+          navigation.replace("Login");
+        } catch (error) {
+          console.error("Error during logout: ", error);
+          alert("Logout failed. Please try again.");
+        }
         break;
       default:
         navigation.navigate("Details", { name });
@@ -136,14 +126,5 @@ const Footer = () => (
 );
 
 const Separator = () => <View style={profileStyle.separator} />;
-
-// Sample LoginScreen Component (for demo)
-const LoginScreen = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Please log in again</Text>
-    </View>
-  );
-};
 
 export default UserProfile;

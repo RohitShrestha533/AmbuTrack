@@ -11,7 +11,7 @@ import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-const Home = () => {
+const Login = () => {
   const navigation = useNavigation();
   const [isSignUp, setIsSignUp] = useState(true);
   const [role, setRole] = useState("");
@@ -42,17 +42,15 @@ const Home = () => {
       .post("http://192.168.100.9:3000/userLogin", userData)
       .then((response) => {
         if (response.data.status === 200) {
-          // Check for the correct status
           alert("Login successful");
-          // Navigate to the main page (Home Screen or dashboard)
-          navigation.navigate("Main");
+          navigation.replace("Main");
         } else {
-          alert(response.data.message); // Handle other messages if any
+          alert(response.data.message);
         }
       })
       .catch((error) => {
         if (error.response && error.response.data.message) {
-          alert(error.response.data.message); // Show the error message
+          alert(error.response.data.message);
         } else {
           alert("Something went wrong");
         }
@@ -75,7 +73,7 @@ const Home = () => {
       })
       .catch((error) => {
         if (error.response && error.response.data.message) {
-          alert(error.response.data.message); // Show the error message
+          alert(error.response.data.message);
         } else {
           alert("Something went wrong");
         }
@@ -84,7 +82,6 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      {/* Logo Image */}
       <ImageBackground
         source={require("../../assets/AmbuTrackLogo.png")}
         style={styles.imageBackground}
@@ -103,7 +100,6 @@ const Home = () => {
         </View>
       </ImageBackground>
 
-      {/* Form Fields */}
       <View style={styles.formContainer}>
         {isSignUp ? (
           <>
@@ -132,9 +128,7 @@ const Home = () => {
             />
             <TouchableOpacity
               onPress={() => setPasswordVisible(!passwordVisible)}
-            >
-              {/* Add an icon here if needed */}
-            </TouchableOpacity>
+            ></TouchableOpacity>
 
             <TextInput
               style={styles.input}
@@ -145,9 +139,7 @@ const Home = () => {
             />
             <TouchableOpacity
               onPress={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
-            >
-              {/* Add an icon here if needed */}
-            </TouchableOpacity>
+            ></TouchableOpacity>
 
             <TouchableOpacity
               style={styles.button}
@@ -155,11 +147,10 @@ const Home = () => {
             >
               <Text style={styles.buttonText}>Create Account</Text>
             </TouchableOpacity>
-            {/* Register for Hospital Navigation */}
             <TouchableOpacity
               style={{ alignItems: "center" }}
               onPress={() => {
-                navigation.navigate("RegisterHospital"); // Correctly navigate to RegisterHospital
+                navigation.navigate("RegisterHospital");
               }}
             >
               <Text style={styles.register}>Register for Hospital</Text>
@@ -204,11 +195,10 @@ const Home = () => {
             >
               <Text style={styles.buttonText}>Sign In</Text>
             </TouchableOpacity>
-            {/* Register for Hospital Navigation */}
             <TouchableOpacity
               style={{ alignItems: "center" }}
               onPress={() => {
-                navigation.navigate("RegisterHospital"); // Correctly navigate to RegisterHospital
+                navigation.navigate("RegisterHospital");
               }}
             >
               <Text style={styles.register}>Register for Hospital</Text>
@@ -283,4 +273,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Login;
