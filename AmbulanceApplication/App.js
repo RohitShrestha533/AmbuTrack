@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import Login from "./src/components/Login";
 import UserProfile from "./src/components/UserProfile";
 import Account from "./src/components/Account";
+import AccountUpdate from "./src/components/AccountUpdate";
 import History from "./src/components/History";
 import Test from "./src/components/Test";
 import Main from "./src/components/Main";
@@ -32,6 +33,7 @@ export default function App() {
         <Stack.Screen name="Test" component={Test} />
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen name="AccountUpdate" component={AccountUpdate} />
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Policies" component={Policies} />
         <Stack.Screen name="RegisterHospital" component={RegisterHospital} />

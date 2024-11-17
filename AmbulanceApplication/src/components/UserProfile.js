@@ -9,8 +9,6 @@ import {
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const loggedInUserName = "Rohit Shrestha";
-
 const SectionlistToDisplay = [
   {
     title: "Profile",
@@ -63,10 +61,6 @@ const Item = ({ name, navigation }) => {
 };
 
 const UserProfile = ({ navigation }) => {
-  useEffect(() => {
-    navigation.setOptions({ title: loggedInUserName });
-  }, [navigation]);
-
   const renderItem = ({ item }) => (
     <Item name={item.name} navigation={navigation} />
   );
