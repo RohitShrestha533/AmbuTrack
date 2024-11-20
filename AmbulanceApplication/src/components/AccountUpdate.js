@@ -74,12 +74,10 @@ const AccountUpdate = () => {
   };
 
   const showDatePicker = () => {
-    console.log("Date Picker shown");
     setDatePickerVisibility(true);
   };
 
   const hideDatePicker = () => {
-    console.log("Date Picker hidden");
     setDatePickerVisibility(false);
   };
 

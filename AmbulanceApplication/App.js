@@ -9,6 +9,8 @@ import AccountUpdate from "./src/components/AccountUpdate";
 import History from "./src/components/History";
 import Test from "./src/components/Test";
 import Main from "./src/components/Main";
+import TermsAndConditions from "./src/components/TermsAndConditions";
+import PrivacyPolicy from "./src/components/PrivacyPolicy";
 import Map from "./src/components/Map";
 import HomeScreen from "./src/components/HomeScreen";
 import RegisterHospital from "./src/components/RegisterHospital";
@@ -31,8 +33,27 @@ export default function App() {
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Test" component={Test} />
-        <Stack.Screen name="UserProfile" component={UserProfile} />
-        <Stack.Screen name="Account" component={Account} />
+        <Stack.Screen
+          name="UserProfile"
+          component={UserProfile}
+          options={{ title: "Profile" }}
+        />
+        <Stack.Screen
+          name="Account"
+          component={Account}
+          options={{ title: "Account" }}
+        />
+        <Stack.Screen
+          name="TermsAndConditions"
+          component={TermsAndConditions}
+          options={{ title: "Terms & Conditions" }}
+        />
+
+        <Stack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+          options={{ title: "Privacy Policy" }}
+        />
         <Stack.Screen name="AccountUpdate" component={AccountUpdate} />
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Policies" component={Policies} />

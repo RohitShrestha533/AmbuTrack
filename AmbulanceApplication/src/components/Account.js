@@ -22,7 +22,7 @@ const Account = () => {
         const response = await axios.get("http://192.168.100.9:3000/UserData", {
           withCredentials: true,
         });
-        console.log("User Data:", response.data);
+        // console.log("User Data:", response.data);
         setUserData(response.data.user);
         const user = response.data?.user;
 

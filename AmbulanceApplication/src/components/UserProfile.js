@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
+import Icon from "react-native-vector-icons/MaterialIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SectionlistToDisplay = [
@@ -66,7 +67,20 @@ const UserProfile = ({ navigation }) => {
   );
 
   const renderSectionHeader = ({ section: { title } }) => (
-    <Text style={profileStyle.sectionHeader}>{title}</Text>
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 10,
+      }}
+    >
+      <Text style={profileStyle.sectionHeader}>{title}</Text>
+      <View style={profileStyle.iconContainer}>
+        <Icon name="person" size={50} color="white" />
+      </View>
+    </View>
   );
 
   return (
@@ -84,7 +98,7 @@ const UserProfile = ({ navigation }) => {
 };
 
 const profileStyle = StyleSheet.create({
-  container: { flex: 1 },
+  container: { flex: 1, backgroundColor: "white" },
   innerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -92,11 +106,17 @@ const profileStyle = StyleSheet.create({
     paddingVertical: 20,
     backgroundColor: "white",
   },
+  iconContainer: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    backgroundColor: "#D3D3D3",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   sectionHeader: {
-    backgroundColor: "#fbdabb",
-    color: "#333333",
+    backgroundColor: "white",
     fontSize: 34,
-    textAlign: "right",
     paddingHorizontal: 20,
   },
   itemText: {

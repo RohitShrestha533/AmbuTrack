@@ -1,13 +1,57 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
 
 const Policies = () => {
+  const navigation = useNavigation();
+
+  const openConditions = () => {
+    navigation.navigate("TermsAndConditions");
+  };
+
+  const openPrivacyPolicy = () => {
+    navigation.navigate("PrivacyPolicy");
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Policies Information</Text>
-      <Text style={styles.info}>Name: Rohit Shrestha</Text>
-      <Text style={styles.info}>Email: rohit@example.com</Text>
-      <Text style={styles.info}>Phone: +123456789</Text>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <TouchableOpacity onPress={openConditions}>
+          <View style={styles.header}>
+            <Text style={styles.text}>Terms & Conditions</Text>
+            <View style={styles.iconContainer}>
+              <Icon
+                name="arrow-right"
+                size={40}
+                color="black"
+                style={styles.icon}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        {/* Privacy Policy Row */}
+        <TouchableOpacity onPress={openPrivacyPolicy}>
+          <View style={styles.header}>
+            <Text style={styles.text}>Privacy Policy</Text>
+            <View style={styles.iconContainer}>
+              <Icon
+                name="arrow-right"
+                size={40}
+                color="black"
+                style={styles.icon}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
@@ -15,18 +59,27 @@ const Policies = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  header: {
+    backgroundColor: "white",
+    flexDirection: "row",
+    borderBottomWidth: 1.5,
+    borderColor: "#EDEFEE",
+    paddingLeft: 25,
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: 5,
+  },
+  iconContainer: {
+    width: 70,
+    height: 70,
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  info: {
-    fontSize: 18,
-    marginVertical: 5,
+  text: {
+    fontSize: 19,
+    color: "black",
+    lineHeight: 24,
   },
 });
 
